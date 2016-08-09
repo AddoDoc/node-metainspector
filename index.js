@@ -275,6 +275,18 @@ MetaInspector.prototype.parseFeeds = function(format)
 	return feeds;
 }
 
+MetaInspector.prototype.getFinalUrl = function()
+{
+    debug("Getting request final url");
+
+    if(!this.finalUrl)
+    {
+        this.finalUrl = this.response.request.uri;
+    }
+
+    return this;
+}
+
 MetaInspector.prototype.initAllProperties = function()
 {
 	// title of the page, as string
@@ -291,7 +303,8 @@ MetaInspector.prototype.initAllProperties = function()
 			.getOgDescription()
 			.getOgType()
 			.getOgUpdatedTime()
-			.getOgLocale();
+			.getOgLocale()
+            .getFinalUrl();
 }
 
 MetaInspector.prototype.getAbsolutePath = function(href){
